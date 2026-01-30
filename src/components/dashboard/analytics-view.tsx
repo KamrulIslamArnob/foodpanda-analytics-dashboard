@@ -9,6 +9,7 @@ import { FullAnalytics, Insight } from "@/types";
 import { Badge } from "@/components/ui/badge";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { CreditCard, DollarSign, Lightbulb, ShoppingBag, TrendingUp, Utensils, Clock, MapPin, PieChart as PieChartIcon, BarChart as BarChartIcon, Wallet, TrendingDown, Activity, Target, HelpCircle, Calendar } from "lucide-react";
+import { BDTIcon } from "@/components/ui/bdt-icon";
 import {
     SpendingBreakdownChart,
     MonthlySpendingChart,
@@ -83,7 +84,7 @@ export function AnalyticsView({ analytics }: AnalyticsViewProps) {
                     <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-6">
                         <StatCard
                             label="Total Spent"
-                            value={`৳${analytics.spending.total_spent.toLocaleString()}`}
+                            value={<><BDTIcon size={24} />{analytics.spending.total_spent.toLocaleString()}</>}
                             icon={<DollarSign className="h-4 w-4" />}
                             color="text-pink-600"
                             help={{
@@ -107,7 +108,7 @@ export function AnalyticsView({ analytics }: AnalyticsViewProps) {
                         />
                         <StatCard
                             label="Avg Order"
-                            value={`৳${analytics.spending.average_order_value.toFixed(0)}`}
+                            value={<><BDTIcon size={24} />{analytics.spending.average_order_value.toFixed(0)}</>}
                             icon={<TrendingUp className="h-4 w-4" />}
                             color="text-green-600"
                             help={{
@@ -119,7 +120,7 @@ export function AnalyticsView({ analytics }: AnalyticsViewProps) {
                         />
                         <StatCard
                             label="Saved"
-                            value={`৳${analytics.spending.total_voucher_savings.toLocaleString()}`}
+                            value={<><BDTIcon size={24} />{analytics.spending.total_voucher_savings.toLocaleString()}</>}
                             icon={<Badge className="bg-green-500 text-[10px] md:text-xs px-1.5 py-0.5">SAVED</Badge>}
                             color="text-green-600"
                             help={{
@@ -332,7 +333,7 @@ export function AnalyticsView({ analytics }: AnalyticsViewProps) {
                                 <MetricHelp shows="Estimated yearly value." data="Avg spend projected." insight="Your value to the platform." useful="Fun economic metric." />
                             </div>
                             <div className="text-3xl lg:text-4xl font-bold text-pink-600 tracking-tight">
-                                ৳{(analytics.advanced?.customer_lifetime_value ?? 0).toLocaleString(undefined, { maximumFractionDigits: 0 })}
+                                <BDTIcon size={32} />{(analytics.advanced?.customer_lifetime_value ?? 0).toLocaleString(undefined, { maximumFractionDigits: 0 })}
                             </div>
                         </Card>
 
@@ -490,19 +491,19 @@ export function AnalyticsView({ analytics }: AnalyticsViewProps) {
                             <Card className="p-5 hover:shadow-md transition-all">
                                 <div className="text-sm text-muted-foreground mb-2">Optimal Order Value</div>
                                 <div className="text-2xl lg:text-3xl font-bold text-green-600">
-                                    ৳{(analytics.costOptimization?.optimal_order_value ?? 0).toFixed(0)}
+                                    <BDTIcon size={28} />{(analytics.costOptimization?.optimal_order_value ?? 0).toFixed(0)}
                                 </div>
                             </Card>
                             <Card className="p-5 hover:shadow-md transition-all">
                                 <div className="text-sm text-muted-foreground mb-2">Potential Savings</div>
                                 <div className="text-2xl lg:text-3xl font-bold text-orange-600">
-                                    ৳{(analytics.costOptimization?.potential_savings ?? 0).toLocaleString()}
+                                    <BDTIcon size={28} />{(analytics.costOptimization?.potential_savings ?? 0).toLocaleString()}
                                 </div>
                             </Card>
                             <Card className="p-5 hover:shadow-md transition-all">
                                 <div className="text-sm text-muted-foreground mb-2">Avg Voucher Savings</div>
                                 <div className="text-2xl lg:text-3xl font-bold text-purple-600">
-                                    ৳{(analytics.costOptimization?.voucher_impact?.avg_savings_with_voucher ?? 0).toLocaleString()}
+                                    <BDTIcon size={28} />{(analytics.costOptimization?.voucher_impact?.avg_savings_with_voucher ?? 0).toLocaleString()}
                                 </div>
                             </Card>
                         </div>
@@ -516,7 +517,7 @@ export function AnalyticsView({ analytics }: AnalyticsViewProps) {
                                 <div>
                                     <h4 className="text-sm font-bold text-yellow-800 mb-1">💡 Smart Saving Tip</h4>
                                     <p className="text-sm text-yellow-700 leading-relaxed">
-                                        Try to keep your orders above <span className="font-bold">৳{(analytics.costOptimization?.optimal_order_value ?? 250).toFixed(0)}</span> to maximize value and minimize the impact of delivery and service fees!
+                                        Try to keep your orders above <span className="font-bold inline-flex items-center"><BDTIcon size={14} />{(analytics.costOptimization?.optimal_order_value ?? 250).toFixed(0)}</span> to maximize value and minimize the impact of delivery and service fees!
                                     </p>
                                 </div>
                             </div>
@@ -709,7 +710,7 @@ function TabButton({ value, children, className = "", icon }: { value: string; c
 }
 
 // Compact/Expanded Stat Card
-function StatCard({ label, value, icon, color, help }: { label: string; value: string; icon: React.ReactNode; color: string; help?: { shows: string, data: string, insight: string, useful: string } }) {
+function StatCard({ label, value, icon, color, help }: { label: string; value: React.ReactNode; icon: React.ReactNode; color: string; help?: { shows: string, data: string, insight: string, useful: string } }) {
     return (
         <Card className="p-3 md:p-5 animate-in fade-in zoom-in-95 duration-500 md:hover:shadow-md md:hover:-translate-y-1 transition-all">
             <div className="flex items-center justify-between mb-1 md:mb-2">
@@ -755,7 +756,7 @@ function InsightCard({ insight, analytics }: InsightCardProps) {
                 const avgOrder = analytics.spending.average_order_value;
                 const spendingType = analytics.spending.spending_category.type;
                 return {
-                    metric: `Avg Order Value: ৳${avgOrder.toFixed(0)}`,
+                    metric: `Avg Order Value: Tk ${avgOrder.toFixed(0)}`,
                     level: `(${spendingType})`,
                     icon: '💰',
                     iconBg: 'bg-emerald-100',
@@ -770,7 +771,7 @@ function InsightCard({ insight, analytics }: InsightCardProps) {
                 const totalSaved = analytics.spending.total_voucher_savings;
                 return {
                     metric: `Voucher Usage: ${savingsRate.toFixed(1)}%`,
-                    level: `(Saved ৳${totalSaved.toFixed(0)})`,
+                    level: `(Saved Tk ${totalSaved.toFixed(0)})`,
                     icon: '🎫',
                     iconBg: 'bg-purple-100',
                     iconColor: 'text-purple-600',

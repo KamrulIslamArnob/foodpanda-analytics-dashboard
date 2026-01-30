@@ -714,7 +714,7 @@ export const analyticsService = {
         timeAnalysis: TimeAnalytics,
         costOptimization: CostOptimizationAnalytics
     ): ComparativeMetrics {
-        // Spending percentile (based on Bangladesh avg monthly food spending ~৳15000-20000)
+        // Spending percentile (based on Bangladesh avg monthly food spending ~Tk 15000-20000)
         const avgMonthlySpending = Object.keys(spending.monthly_spending).length > 0
             ? _.mean(Object.values(spending.monthly_spending))
             : spending.average_order_value * 4;
@@ -766,7 +766,7 @@ export const analyticsService = {
             icon: '💰',
             title: `${spending.spending_category.type}`,
             description: spending.spending_category.description,
-            detailedExplanation: `Your average order is ৳${spending.average_order_value.toFixed(0)}. ${spending.spending_category.type === 'Big Spender' ? 'You enjoy premium meals and aren\'t afraid to spend more for quality food.' : spending.spending_category.type === 'Medium Spender' ? 'You balance between quality and budget, ordering moderately priced meals.' : 'You prefer budget-friendly options and focus on value for money.'}`,
+            detailedExplanation: `Your average order is Tk ${spending.average_order_value.toFixed(0)}. ${spending.spending_category.type === 'Big Spender' ? 'You enjoy premium meals and aren\'t afraid to spend more for quality food.' : spending.spending_category.type === 'Medium Spender' ? 'You balance between quality and budget, ordering moderately priced meals.' : 'You prefer budget-friendly options and focus on value for money.'}`,
             color: spending.spending_category.color
         });
 
@@ -778,7 +778,7 @@ export const analyticsService = {
                 icon: '🎫',
                 title: voucherTitle,
                 description: `You used vouchers ${spending.voucher_usage_rate.toFixed(0)}% of the time`,
-                detailedExplanation: `You saved a total of ৳${spending.total_voucher_savings.toFixed(0)} by using vouchers on ${spending.voucher_usage_rate.toFixed(1)}% of your orders. That's smart shopping! Keep looking for deals to save even more.`,
+                detailedExplanation: `You saved a total of Tk ${spending.total_voucher_savings.toFixed(0)} by using vouchers on ${spending.voucher_usage_rate.toFixed(1)}% of your orders. That's smart shopping! Keep looking for deals to save even more.`,
                 color: '#9b59b6'
             });
         }

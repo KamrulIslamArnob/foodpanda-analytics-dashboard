@@ -40,7 +40,7 @@ export function SpendingBreakdownChart({ foodCost, deliveryFees, serviceFees }: 
                     cornerRadius: 6,
                     highlightScope: { fade: "global", highlight: "item" },
                     faded: { innerRadius: 30, additionalRadius: -10, color: "gray" },
-                    valueFormatter: (value) => `৳${value.value.toLocaleString()}`,
+                    valueFormatter: (value) => `Tk ${value.value.toLocaleString()}`,
                 },
             ]}
             sx={{
@@ -85,7 +85,7 @@ export function MonthlySpendingChart({ monthlyData }: MonthlySpendingChartProps)
             ]}
             yAxis={[
                 {
-                    valueFormatter: (value: number) => `৳${value}`,
+                    valueFormatter: (value: number) => `Tk ${value}`,
                     tickLabelStyle: {
                         fontSize: 11,
                         fill: LABEL_COLOR,
@@ -97,7 +97,7 @@ export function MonthlySpendingChart({ monthlyData }: MonthlySpendingChartProps)
                 {
                     data: chartData.values,
                     color: "#ec4899",
-                    valueFormatter: (value) => `৳${value?.toLocaleString() ?? 0}`,
+                    valueFormatter: (value) => `Tk ${value?.toLocaleString() ?? 0}`,
                 },
             ]}
             borderRadius={8}
@@ -225,39 +225,51 @@ interface PaymentMethodsChartProps {
 }
 
 export function PaymentMethodsChart({ paymentData }: PaymentMethodsChartProps) {
+    const total = useMemo(() => Object.values(paymentData).reduce((a, b) => a + b, 0), [paymentData]);
+
     const data = useMemo(() => {
-        const total = Object.values(paymentData).reduce((a, b) => a + b, 0);
         return Object.entries(paymentData).map(([name, value], index) => ({
             id: index,
             value,
-            label: `${name} (${((value / total) * 100).toFixed(0)}%)`,
+            label: `${name} (${total > 0 ? ((value / total) * 100).toFixed(0) : 0}%)`,
             color: CHART_COLORS.rainbow[index % CHART_COLORS.rainbow.length],
         }));
-    }, [paymentData]);
+    }, [paymentData, total]);
 
     return (
         <PieChart
             series={[
                 {
                     data,
+                    cx: "60%",
                     outerRadius: "80%",
-                    arcLabel: (item) => `${((item.value / Object.values(paymentData).reduce((a, b) => a + b, 0)) * 100).toFixed(0)}%`,
+                    arcLabel: (item) => `${total > 0 ? ((item.value / total) * 100).toFixed(0) : 0}%`,
                     arcLabelMinAngle: 20,
                     highlightScope: { fade: "global", highlight: "item" },
                     faded: { additionalRadius: -10, color: "gray" },
                 },
             ]}
+            slotProps={{
+                legend: {
+
+                    position: { vertical: 'middle', horizontal: 'end' },
+
+                    labelStyle: {
+                        fontSize: 13,
+                        fill: LABEL_COLOR,
+                        fontFamily: FONT_FAMILY,
+                        fontWeight: 600,
+                    },
+                    padding: 0,
+                },
+            }}
+            margin={{ right: 220, left: 20 }}
             sx={{
                 "& .MuiPieArc-root": {
                     filter: "drop-shadow(0 4px 8px rgba(0, 0, 0, 0.15))",
                 },
-                "& .MuiChartsLegend-root": {
-                    fontSize: 12,
-                    fill: LABEL_COLOR,
-                    fontFamily: FONT_FAMILY,
-                },
                 "& .MuiChartsLegend-mark": {
-                    rx: 4,
+                    rx: 6,
                 },
             }}
         />
@@ -292,7 +304,7 @@ export function SpendingTrendChart({ monthlyData }: SpendingTrendChartProps) {
             ]}
             yAxis={[
                 {
-                    valueFormatter: (value: number) => `৳${value}`,
+                    valueFormatter: (value: number) => `Tk ${value}`,
                     tickLabelStyle: {
                         fontSize: 11,
                         fill: LABEL_COLOR,
@@ -306,7 +318,7 @@ export function SpendingTrendChart({ monthlyData }: SpendingTrendChartProps) {
                     color: "#ec4899",
                     area: true,
                     showMark: true,
-                    valueFormatter: (value) => `৳${value?.toLocaleString() ?? 0}`,
+                    valueFormatter: (value) => `Tk ${value?.toLocaleString() ?? 0}`,
                 },
             ]}
             sx={{
@@ -389,13 +401,13 @@ export function SpendingByDayChart({ dayData }: SpendingByDayChartProps) {
                 tickLabelStyle: { fontSize: 10, fill: LABEL_COLOR, fontFamily: FONT_FAMILY },
             }]}
             yAxis={[{
-                valueFormatter: (value: number) => `৳${value}`,
+                valueFormatter: (value: number) => `Tk ${value}`,
                 tickLabelStyle: { fontSize: 11, fill: LABEL_COLOR, fontFamily: FONT_FAMILY },
             }]}
             series={[{
                 data: chartData.values,
                 color: "#0ea5e9",
-                valueFormatter: (value) => `৳${value?.toLocaleString() ?? 0}`,
+                valueFormatter: (value) => `Tk ${value?.toLocaleString() ?? 0}`,
             }]}
             borderRadius={6}
             grid={{ horizontal: true }}
@@ -424,7 +436,7 @@ export function PriceTrendChart({ trendData }: PriceTrendChartProps) {
                 tickLabelStyle: { fontSize: 10, fill: LABEL_COLOR, fontFamily: FONT_FAMILY },
             }]}
             yAxis={[{
-                valueFormatter: (value: number) => `৳${value.toFixed(0)}`,
+                valueFormatter: (value: number) => `Tk ${value.toFixed(0)}`,
                 tickLabelStyle: { fontSize: 11, fill: LABEL_COLOR, fontFamily: FONT_FAMILY },
             }]}
             series={[{
