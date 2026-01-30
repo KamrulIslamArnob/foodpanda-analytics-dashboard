@@ -251,16 +251,7 @@ export function PaymentMethodsChart({ paymentData }: PaymentMethodsChartProps) {
             ]}
             slotProps={{
                 legend: {
-
                     position: { vertical: 'middle', horizontal: 'end' },
-
-                    labelStyle: {
-                        fontSize: 13,
-                        fill: LABEL_COLOR,
-                        fontFamily: FONT_FAMILY,
-                        fontWeight: 600,
-                    },
-                    padding: 0,
                 },
             }}
             margin={{ right: 220, left: 20 }}
@@ -270,6 +261,12 @@ export function PaymentMethodsChart({ paymentData }: PaymentMethodsChartProps) {
                 },
                 "& .MuiChartsLegend-mark": {
                     rx: 6,
+                },
+                "& .MuiChartsLegend-root": {
+                    fontSize: 13,
+                    fill: LABEL_COLOR,
+                    fontFamily: FONT_FAMILY,
+                    fontWeight: 600,
                 },
             }}
         />
