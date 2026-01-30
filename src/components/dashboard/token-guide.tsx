@@ -11,7 +11,7 @@ function ImageWithLoader({ className, ...props }: React.ComponentProps<typeof Im
     return (
         <>
             {isLoading && (
-                <div className="absolute inset-0 flex items-center justify-center bg-zinc-100 dark:bg-zinc-800/50">
+                <div className="absolute inset-0 flex items-center justify-center bg-zinc-100">
                     <Loader2 className="h-6 w-6 animate-spin text-pink-600" />
                 </div>
             )}
@@ -81,7 +81,7 @@ export function TokenGuide() {
                             {steps.map((step, idx) => (
                                 <div key={idx} className="space-y-2">
                                     <h4 className="font-semibold text-sm text-foreground flex items-center gap-2">
-                                        <span className="bg-pink-100 dark:bg-pink-900/30 text-pink-700 dark:text-pink-300 w-6 h-6 rounded-full flex items-center justify-center text-xs">
+                                        <span className="bg-pink-100 text-pink-700 w-6 h-6 rounded-full flex items-center justify-center text-xs">
                                             {idx + 1}
                                         </span>
                                         {step.title.substring(3)} {/* Remove number prefix since we use badge */}
@@ -91,7 +91,7 @@ export function TokenGuide() {
                                     </p>
                                     <div className="pl-8 pt-1">
                                         <div
-                                            className="relative rounded-lg overflow-hidden border border-zinc-200 dark:border-zinc-800 shadow-sm cursor-zoom-in group"
+                                            className="relative rounded-lg overflow-hidden border border-zinc-200 shadow-sm cursor-zoom-in group"
                                             onClick={() => setSelectedImage(step.image)}
                                         >
                                             <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors z-10 flex items-center justify-center">

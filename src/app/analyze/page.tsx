@@ -154,12 +154,12 @@ export default function AnalyzePage() {
                     <Link
                         href="/"
                         className="interactive-breathe group inline-flex items-center gap-2 px-4 py-2 rounded-full 
-                                   bg-zinc-100 dark:bg-zinc-800 
-                                   hover:bg-pink-50 dark:hover:bg-pink-900/30
-                                   border border-zinc-200 dark:border-zinc-700
-                                   hover:border-pink-200 dark:hover:border-pink-800
-                                   text-zinc-600 dark:text-zinc-400
-                                   hover:text-pink-600 dark:hover:text-pink-400
+                                   bg-zinc-100 
+                                   hover:bg-pink-50
+                                   border border-zinc-200
+                                   hover:border-pink-200
+                                   text-zinc-600
+                                   hover:text-pink-600
                                    shadow-sm hover:shadow-md"
                     >
                         <ArrowLeft className="h-4 w-4 transition-transform group-hover:-translate-x-1" />
@@ -172,16 +172,16 @@ export default function AnalyzePage() {
                             flex items-center gap-2 px-3 py-1.5 rounded-full border transition-all duration-300
                             ${!displayData ? 'opacity-50 cursor-not-allowed bg-zinc-100 border-zinc-200 text-zinc-400' :
                                 copied
-                                    ? 'bg-green-50 border-green-200 dark:bg-green-900/20 dark:border-green-800 scale-105'
-                                    : 'bg-pink-50 dark:bg-pink-900/30 border-pink-200 dark:border-pink-800 hover:bg-pink-100 dark:hover:bg-pink-900/50 cursor-pointer active:scale-95 animate-pulse-glow'}
+                                    ? 'bg-green-50 border-green-200 scale-105'
+                                    : 'bg-pink-50 border-pink-200 hover:bg-pink-100 cursor-pointer active:scale-95 animate-pulse-glow'}
                         `}
                     >
                         {copied ? (
-                            <Check className="h-4 w-4 text-green-600 dark:text-green-400" />
+                            <Check className="h-4 w-4 text-green-600" />
                         ) : (
-                            <BarChart3 className="h-4 w-4 text-pink-600 dark:text-pink-400" />
+                            <BarChart3 className="h-4 w-4 text-pink-600" />
                         )}
-                        <span className={`font-semibold text-sm ${copied ? 'text-green-600 dark:text-green-400' : 'animate-shimmer-pink text-foreground'}`}>
+                        <span className={`font-semibold text-sm ${copied ? 'text-green-600' : 'animate-shimmer-pink text-foreground'}`}>
                             {copied ? "Copied JSON" : "Analytics"}
                         </span>
                     </button>
@@ -193,9 +193,9 @@ export default function AnalyzePage() {
                 {!displayData ? (
                     /* Token Input Form */
                     <div className="max-w-md mx-auto animate-in fade-in slide-in-from-bottom-4 duration-500">
-                        <Card className="border-pink-100 dark:border-pink-900/20 shadow-lg">
+                        <Card className="border-pink-100 shadow-lg">
                             <CardHeader className="text-center pb-4">
-                                <div className="mx-auto bg-pink-100 dark:bg-pink-900/30 p-3 rounded-xl w-fit mb-3">
+                                <div className="mx-auto bg-pink-100 p-3 rounded-xl w-fit mb-3">
                                     <Key className="h-6 w-6 text-pink-600" />
                                 </div>
                                 <CardTitle className="text-xl font-bold">Enter Bearer Token</CardTitle>
@@ -230,7 +230,7 @@ export default function AnalyzePage() {
                                     </Button>
 
                                     {state?.error && (
-                                        <div className="text-red-500 text-sm text-center bg-red-50 dark:bg-red-900/10 p-3 rounded-lg">
+                                        <div className="text-red-500 text-sm text-center bg-red-50 p-3 rounded-lg">
                                             {state.error}
                                         </div>
                                     )}
@@ -254,7 +254,7 @@ export default function AnalyzePage() {
                                     <div className="flex items-center gap-2 text-sm text-muted-foreground">
                                         <span>{displayData.orderCount} orders analyzed</span>
                                         {isFromStorage && (
-                                            <span className="inline-flex items-center gap-1 text-xs bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-400 px-2 py-0.5 rounded-full">
+                                            <span className="inline-flex items-center gap-1 text-xs bg-blue-100 text-blue-700 px-2 py-0.5 rounded-full">
                                                 <Database className="h-3 w-3" />
                                                 Saved {getTimeAgo()}
                                             </span>
@@ -274,13 +274,13 @@ export default function AnalyzePage() {
 
                             {/* Saved data notice */}
                             {isFromStorage && (
-                                <div className="bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 rounded-lg p-3 flex items-start gap-3 text-sm">
+                                <div className="bg-blue-50 border border-blue-200 rounded-lg p-3 flex items-start gap-3 text-sm">
                                     <Database className="h-4 w-4 text-blue-600 mt-0.5 shrink-0" />
                                     <div className="flex-1">
-                                        <p className="text-blue-800 dark:text-blue-300">
+                                        <p className="text-blue-800">
                                             <strong>Viewing saved data</strong> from {getTimeAgo()}
                                         </p>
-                                        <p className="text-blue-600 dark:text-blue-400 text-xs mt-0.5">
+                                        <p className="text-blue-600 text-xs mt-0.5">
                                             Data is stored in your browser. Click &quot;New Analysis&quot; to fetch fresh data.
                                         </p>
                                     </div>

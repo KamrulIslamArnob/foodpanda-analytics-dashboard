@@ -125,21 +125,21 @@ export function ClearCacheButton({
         lg: 'px-6 py-3 text-base gap-2.5'
     };
 
-    // Variant classes
+    // Variant classes (light mode only)
     const variantClasses = {
         default: {
-            idle: 'bg-zinc-100 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 hover:bg-zinc-200 dark:hover:bg-zinc-700',
-            confirming: 'bg-amber-100 dark:bg-amber-900/30 text-amber-700 dark:text-amber-400 border-amber-300 dark:border-amber-700',
-            clearing: 'bg-zinc-200 dark:bg-zinc-700 text-zinc-500 cursor-wait',
-            success: 'bg-emerald-100 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-400',
-            error: 'bg-red-100 dark:bg-red-900/30 text-red-700 dark:text-red-400'
+            idle: 'bg-zinc-100 text-zinc-700 hover:bg-zinc-200',
+            confirming: 'bg-amber-100 text-amber-700 border-amber-300',
+            clearing: 'bg-zinc-200 text-zinc-500 cursor-wait',
+            success: 'bg-emerald-100 text-emerald-700',
+            error: 'bg-red-100 text-red-700'
         },
         minimal: {
-            idle: 'bg-transparent text-zinc-500 hover:text-zinc-700 dark:hover:text-zinc-300',
-            confirming: 'bg-transparent text-amber-600 dark:text-amber-400',
+            idle: 'bg-transparent text-zinc-500 hover:text-zinc-700',
+            confirming: 'bg-transparent text-amber-600',
             clearing: 'bg-transparent text-zinc-400 cursor-wait',
-            success: 'bg-transparent text-emerald-600 dark:text-emerald-400',
-            error: 'bg-transparent text-red-600 dark:text-red-400'
+            success: 'bg-transparent text-emerald-600',
+            error: 'bg-transparent text-red-600'
         },
         danger: {
             idle: 'bg-red-500 text-white hover:bg-red-600',
@@ -187,7 +187,7 @@ export function ClearCacheButton({
                                 <Trash2 size={iconSize} />
                                 <span>Clear Local Data</span>
                                 {showStats && totalCachedItems > 0 && (
-                                    <span className="ml-1 px-1.5 py-0.5 bg-zinc-200 dark:bg-zinc-700 rounded text-xs">
+                                    <span className="ml-1 px-1.5 py-0.5 bg-zinc-200 rounded text-xs">
                                         {totalCachedItems}
                                     </span>
                                 )}
@@ -256,7 +256,7 @@ export function ClearCacheButton({
                             animate={{ opacity: 1, x: 0 }}
                             exit={{ opacity: 0, x: -10 }}
                             onClick={handleCancel}
-                            className="text-xs text-zinc-500 hover:text-zinc-700 dark:hover:text-zinc-300 underline"
+                            className="text-xs text-zinc-500 hover:text-zinc-700 underline"
                         >
                             Cancel
                         </motion.button>
@@ -270,7 +270,7 @@ export function ClearCacheButton({
                         onMouseLeave={() => setShowTooltip(false)}
                         onFocus={() => setShowTooltip(true)}
                         onBlur={() => setShowTooltip(false)}
-                        className="p-1 text-zinc-400 hover:text-zinc-600 dark:hover:text-zinc-300 rounded-full"
+                        className="p-1 text-zinc-400 hover:text-zinc-600 rounded-full"
                         aria-label="Learn about local data storage"
                     >
                         <HelpCircle size={size === 'sm' ? 14 : 16} />
@@ -285,11 +285,11 @@ export function ClearCacheButton({
                                 exit={{ opacity: 0, y: 5, scale: 0.95 }}
                                 transition={{ duration: TIMING.fast }}
                                 className="absolute z-50 left-1/2 -translate-x-1/2 bottom-full mb-2 w-64 p-3 
-                                           bg-zinc-900 dark:bg-zinc-100 text-zinc-100 dark:text-zinc-900 
+                                           bg-zinc-900 text-zinc-100 
                                            text-xs rounded-lg shadow-xl"
                             >
                                 <div className="flex items-start gap-2">
-                                    <Database size={14} className="shrink-0 mt-0.5 text-blue-400 dark:text-blue-600" />
+                                    <Database size={14} className="shrink-0 mt-0.5 text-blue-400" />
                                     <p>
                                         Data is stored <strong>temporarily</strong> in your browser cache and is{' '}
                                         <strong>not saved to a server</strong>. Clearing removes it from this device only.
@@ -299,7 +299,7 @@ export function ClearCacheButton({
                                 <div className="absolute left-1/2 -translate-x-1/2 top-full w-0 h-0 
                                                 border-l-[6px] border-l-transparent 
                                                 border-r-[6px] border-r-transparent 
-                                                border-t-[6px] border-t-zinc-900 dark:border-t-zinc-100" />
+                                                border-t-[6px] border-t-zinc-900" />
                             </motion.div>
                         )}
                     </AnimatePresence>
@@ -307,7 +307,7 @@ export function ClearCacheButton({
             </div>
 
             {/* Transparency Message (Always Visible) */}
-            <p className="text-[11px] text-zinc-500 dark:text-zinc-400 max-w-xs leading-relaxed">
+            <p className="text-[11px] text-zinc-500 max-w-xs leading-relaxed">
                 <span className="inline-flex items-center gap-1">
                     <Database size={10} className="text-blue-500" />
                     <span>Browser storage only</span>
@@ -318,7 +318,7 @@ export function ClearCacheButton({
 
             {/* Stats Panel (Optional) */}
             {showStats && stats && (
-                <div className="mt-2 p-3 bg-zinc-50 dark:bg-zinc-800/50 rounded-lg text-xs space-y-1.5 w-full max-w-xs">
+                <div className="mt-2 p-3 bg-zinc-50 rounded-lg text-xs space-y-1.5 w-full max-w-xs">
                     <div className="flex justify-between">
                         <span className="text-zinc-500">Cached Items</span>
                         <span className="font-medium">{totalCachedItems}</span>

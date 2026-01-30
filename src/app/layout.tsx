@@ -2,8 +2,6 @@ import type { Metadata } from "next";
 import { Lexend_Deca, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { Footer } from "@/components/layout/footer";
-import { ThemeProvider } from "@/components/theme-provider";
-import { Navbar } from "@/components/layout/navbar";
 
 const lexendDeca = Lexend_Deca({
   variable: "--font-lexend-deca",
@@ -30,23 +28,15 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en">
       <body
         className={`${lexendDeca.variable} ${geistMono.variable} font-sans antialiased min-h-screen flex flex-col`}
         style={{ fontFamily: "var(--font-lexend-deca), system-ui, sans-serif" }}
       >
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="system"
-          enableSystem
-          disableTransitionOnChange
-        >
-          <Navbar />
-          <div className="flex-1 flex flex-col">
-            {children}
-          </div>
-          <Footer />
-        </ThemeProvider>
+        <div className="flex-1 flex flex-col">
+          {children}
+        </div>
+        <Footer />
       </body>
     </html>
   );

@@ -3,7 +3,6 @@
 import { PieChart } from "@mui/x-charts/PieChart";
 import { BarChart } from "@mui/x-charts/BarChart";
 import { LineChart } from "@mui/x-charts/LineChart";
-import { useTheme } from "next-themes";
 import { useMemo } from "react";
 
 // FoodPanda brand colors - vibrant pink palette
@@ -13,6 +12,10 @@ const CHART_COLORS = {
 
 const FONT_FAMILY = "var(--font-lexend-deca), system-ui, sans-serif";
 
+// Light mode text color for chart labels
+const LABEL_COLOR = "#71717a";
+const AXIS_COLOR = "#e4e4e7";
+
 interface SpendingBreakdownChartProps {
     foodCost: number;
     deliveryFees: number;
@@ -20,9 +23,6 @@ interface SpendingBreakdownChartProps {
 }
 
 export function SpendingBreakdownChart({ foodCost, deliveryFees, serviceFees }: SpendingBreakdownChartProps) {
-    const { resolvedTheme } = useTheme();
-    const isDark = resolvedTheme === "dark";
-
     const data = useMemo(() => [
         { id: 0, value: foodCost, label: "Food", color: "#ec4899" },
         { id: 1, value: deliveryFees, label: "Delivery", color: "#f43f5e" },
@@ -49,7 +49,7 @@ export function SpendingBreakdownChart({ foodCost, deliveryFees, serviceFees }: 
                 },
                 "& .MuiChartsLegend-root": {
                     fontSize: 12,
-                    fill: isDark ? "#a1a1aa" : "#71717a",
+                    fill: LABEL_COLOR,
                     fontFamily: FONT_FAMILY,
                 },
             }}
@@ -62,9 +62,6 @@ interface MonthlySpendingChartProps {
 }
 
 export function MonthlySpendingChart({ monthlyData }: MonthlySpendingChartProps) {
-    const { resolvedTheme } = useTheme();
-    const isDark = resolvedTheme === "dark";
-
     const chartData = useMemo(() => {
         const entries = Object.entries(monthlyData);
         return {
@@ -81,7 +78,7 @@ export function MonthlySpendingChart({ monthlyData }: MonthlySpendingChartProps)
                     scaleType: "band",
                     tickLabelStyle: {
                         fontSize: 11,
-                        fill: isDark ? "#a1a1aa" : "#71717a",
+                        fill: LABEL_COLOR,
                         fontFamily: FONT_FAMILY,
                     },
                 },
@@ -91,7 +88,7 @@ export function MonthlySpendingChart({ monthlyData }: MonthlySpendingChartProps)
                     valueFormatter: (value: number) => `৳${value}`,
                     tickLabelStyle: {
                         fontSize: 11,
-                        fill: isDark ? "#a1a1aa" : "#71717a",
+                        fill: LABEL_COLOR,
                         fontFamily: FONT_FAMILY,
                     },
                 },
@@ -109,7 +106,7 @@ export function MonthlySpendingChart({ monthlyData }: MonthlySpendingChartProps)
                     filter: "drop-shadow(0 2px 4px rgba(236, 72, 153, 0.3))",
                 },
                 "& .MuiChartsAxis-line": {
-                    stroke: isDark ? "#3f3f46" : "#e4e4e7",
+                    stroke: AXIS_COLOR,
                 },
                 "& .MuiChartsAxis-tick": {
                     stroke: "transparent",
@@ -125,9 +122,6 @@ interface HourlyPatternChartProps {
 }
 
 export function HourlyPatternChart({ hourlyData }: HourlyPatternChartProps) {
-    const { resolvedTheme } = useTheme();
-    const isDark = resolvedTheme === "dark";
-
     const chartData = useMemo(() => {
         const sortedEntries = Object.entries(hourlyData)
             .map(([hour, count]) => ({ hour: parseInt(hour), count }))
@@ -147,7 +141,7 @@ export function HourlyPatternChart({ hourlyData }: HourlyPatternChartProps) {
                     scaleType: "band",
                     tickLabelStyle: {
                         fontSize: 10,
-                        fill: isDark ? "#a1a1aa" : "#71717a",
+                        fill: LABEL_COLOR,
                         fontFamily: FONT_FAMILY,
                     },
                 },
@@ -156,7 +150,7 @@ export function HourlyPatternChart({ hourlyData }: HourlyPatternChartProps) {
                 {
                     tickLabelStyle: {
                         fontSize: 11,
-                        fill: isDark ? "#a1a1aa" : "#71717a",
+                        fill: LABEL_COLOR,
                         fontFamily: FONT_FAMILY,
                     },
                 },
@@ -174,7 +168,7 @@ export function HourlyPatternChart({ hourlyData }: HourlyPatternChartProps) {
                     filter: "drop-shadow(0 2px 4px rgba(139, 92, 246, 0.3))",
                 },
                 "& .MuiChartsAxis-line": {
-                    stroke: isDark ? "#3f3f46" : "#e4e4e7",
+                    stroke: AXIS_COLOR,
                 },
                 "& .MuiChartsAxis-tick": {
                     stroke: "transparent",
@@ -190,9 +184,6 @@ interface CuisineChartProps {
 }
 
 export function CuisineChart({ cuisineData }: CuisineChartProps) {
-    const { resolvedTheme } = useTheme();
-    const isDark = resolvedTheme === "dark";
-
     const data = useMemo(() => {
         return Object.entries(cuisineData).map(([name, value], index) => ({
             id: index,
@@ -221,7 +212,7 @@ export function CuisineChart({ cuisineData }: CuisineChartProps) {
                 },
                 "& .MuiChartsLegend-root": {
                     fontSize: 11,
-                    fill: isDark ? "#a1a1aa" : "#71717a",
+                    fill: LABEL_COLOR,
                     fontFamily: FONT_FAMILY,
                 },
             }}
@@ -234,9 +225,6 @@ interface PaymentMethodsChartProps {
 }
 
 export function PaymentMethodsChart({ paymentData }: PaymentMethodsChartProps) {
-    const { resolvedTheme } = useTheme();
-    const isDark = resolvedTheme === "dark";
-
     const data = useMemo(() => {
         const total = Object.values(paymentData).reduce((a, b) => a + b, 0);
         return Object.entries(paymentData).map(([name, value], index) => ({
@@ -265,7 +253,7 @@ export function PaymentMethodsChart({ paymentData }: PaymentMethodsChartProps) {
                 },
                 "& .MuiChartsLegend-root": {
                     fontSize: 12,
-                    fill: isDark ? "#a1a1aa" : "#71717a",
+                    fill: LABEL_COLOR,
                     fontFamily: FONT_FAMILY,
                 },
                 "& .MuiChartsLegend-mark": {
@@ -281,9 +269,6 @@ interface SpendingTrendChartProps {
 }
 
 export function SpendingTrendChart({ monthlyData }: SpendingTrendChartProps) {
-    const { resolvedTheme } = useTheme();
-    const isDark = resolvedTheme === "dark";
-
     const chartData = useMemo(() => {
         const entries = Object.entries(monthlyData);
         return {
@@ -300,7 +285,7 @@ export function SpendingTrendChart({ monthlyData }: SpendingTrendChartProps) {
                     scaleType: "point",
                     tickLabelStyle: {
                         fontSize: 11,
-                        fill: isDark ? "#a1a1aa" : "#71717a",
+                        fill: LABEL_COLOR,
                         fontFamily: FONT_FAMILY,
                     },
                 },
@@ -310,7 +295,7 @@ export function SpendingTrendChart({ monthlyData }: SpendingTrendChartProps) {
                     valueFormatter: (value: number) => `৳${value}`,
                     tickLabelStyle: {
                         fontSize: 11,
-                        fill: isDark ? "#a1a1aa" : "#71717a",
+                        fill: LABEL_COLOR,
                         fontFamily: FONT_FAMILY,
                     },
                 },
@@ -335,11 +320,11 @@ export function SpendingTrendChart({ monthlyData }: SpendingTrendChartProps) {
                 },
                 "& .MuiMarkElement-root": {
                     stroke: "#ec4899",
-                    fill: isDark ? "#18181b" : "#ffffff",
+                    fill: "#ffffff",
                     strokeWidth: 2,
                 },
                 "& .MuiChartsAxis-line": {
-                    stroke: isDark ? "#3f3f46" : "#e4e4e7",
+                    stroke: AXIS_COLOR,
                 },
             }}
             grid={{ horizontal: true }}
@@ -361,9 +346,6 @@ interface OrderSizeDistributionChartProps {
 }
 
 export function OrderSizeDistributionChart({ distribution }: OrderSizeDistributionChartProps) {
-    const { resolvedTheme } = useTheme();
-    const isDark = resolvedTheme === "dark";
-
     const data = useMemo(() => [
         { id: 0, value: distribution.small, label: "Small (1-2)", color: "#10b981" },
         { id: 1, value: distribution.medium, label: "Medium (3-5)", color: "#f59e0b" },
@@ -380,7 +362,7 @@ export function OrderSizeDistributionChart({ distribution }: OrderSizeDistributi
                 cornerRadius: 6,
             }]}
             sx={{
-                "& .MuiChartsLegend-root": { fontSize: 11, fill: isDark ? "#a1a1aa" : "#71717a", fontFamily: FONT_FAMILY }
+                "& .MuiChartsLegend-root": { fontSize: 11, fill: LABEL_COLOR, fontFamily: FONT_FAMILY }
             }}
         />
     );
@@ -391,9 +373,6 @@ interface SpendingByDayChartProps {
 }
 
 export function SpendingByDayChart({ dayData }: SpendingByDayChartProps) {
-    const { resolvedTheme } = useTheme();
-    const isDark = resolvedTheme === "dark";
-
     const chartData = useMemo(() => {
         const dayOrder = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
         return {
@@ -407,11 +386,11 @@ export function SpendingByDayChart({ dayData }: SpendingByDayChartProps) {
             xAxis={[{
                 data: chartData.days.map(d => d.slice(0, 3)),
                 scaleType: "band",
-                tickLabelStyle: { fontSize: 10, fill: isDark ? "#a1a1aa" : "#71717a", fontFamily: FONT_FAMILY },
+                tickLabelStyle: { fontSize: 10, fill: LABEL_COLOR, fontFamily: FONT_FAMILY },
             }]}
             yAxis={[{
                 valueFormatter: (value: number) => `৳${value}`,
-                tickLabelStyle: { fontSize: 11, fill: isDark ? "#a1a1aa" : "#71717a", fontFamily: FONT_FAMILY },
+                tickLabelStyle: { fontSize: 11, fill: LABEL_COLOR, fontFamily: FONT_FAMILY },
             }]}
             series={[{
                 data: chartData.values,
@@ -429,9 +408,6 @@ interface PriceTrendChartProps {
 }
 
 export function PriceTrendChart({ trendData }: PriceTrendChartProps) {
-    const { resolvedTheme } = useTheme();
-    const isDark = resolvedTheme === "dark";
-
     const chartData = useMemo(() => {
         const entries = Object.entries(trendData);
         return {
@@ -445,11 +421,11 @@ export function PriceTrendChart({ trendData }: PriceTrendChartProps) {
             xAxis={[{
                 data: chartData.months,
                 scaleType: "point",
-                tickLabelStyle: { fontSize: 10, fill: isDark ? "#a1a1aa" : "#71717a", fontFamily: FONT_FAMILY },
+                tickLabelStyle: { fontSize: 10, fill: LABEL_COLOR, fontFamily: FONT_FAMILY },
             }]}
             yAxis={[{
                 valueFormatter: (value: number) => `৳${value.toFixed(0)}`,
-                tickLabelStyle: { fontSize: 11, fill: isDark ? "#a1a1aa" : "#71717a", fontFamily: FONT_FAMILY },
+                tickLabelStyle: { fontSize: 11, fill: LABEL_COLOR, fontFamily: FONT_FAMILY },
             }]}
             series={[{
                 data: chartData.values,
@@ -471,9 +447,6 @@ interface MealTypeChartProps {
 }
 
 export function MealTypeChart({ mealData }: MealTypeChartProps) {
-    const { resolvedTheme } = useTheme();
-    const isDark = resolvedTheme === "dark";
-
     const data = useMemo(() => [
         { id: 0, value: mealData.breakfast, label: "Breakfast", color: "#f59e0b" },
         { id: 1, value: mealData.lunch, label: "Lunch", color: "#10b981" },
@@ -491,7 +464,7 @@ export function MealTypeChart({ mealData }: MealTypeChartProps) {
                 cornerRadius: 5,
             }]}
             sx={{
-                "& .MuiChartsLegend-root": { fontSize: 11, fill: isDark ? "#a1a1aa" : "#71717a", fontFamily: FONT_FAMILY }
+                "& .MuiChartsLegend-root": { fontSize: 11, fill: LABEL_COLOR, fontFamily: FONT_FAMILY }
             }}
         />
     );
@@ -502,9 +475,6 @@ interface OrderFrequencyTrendChartProps {
 }
 
 export function OrderFrequencyTrendChart({ frequencyData }: OrderFrequencyTrendChartProps) {
-    const { resolvedTheme } = useTheme();
-    const isDark = resolvedTheme === "dark";
-
     const chartData = useMemo(() => {
         const entries = Object.entries(frequencyData);
         return {
@@ -518,11 +488,11 @@ export function OrderFrequencyTrendChart({ frequencyData }: OrderFrequencyTrendC
             xAxis={[{
                 data: chartData.months,
                 scaleType: "point",
-                tickLabelStyle: { fontSize: 10, fill: isDark ? "#a1a1aa" : "#71717a", fontFamily: FONT_FAMILY },
+                tickLabelStyle: { fontSize: 10, fill: LABEL_COLOR, fontFamily: FONT_FAMILY },
             }]}
             yAxis={[{
                 valueFormatter: (value: number) => `${value} orders`,
-                tickLabelStyle: { fontSize: 11, fill: isDark ? "#a1a1aa" : "#71717a", fontFamily: FONT_FAMILY },
+                tickLabelStyle: { fontSize: 11, fill: LABEL_COLOR, fontFamily: FONT_FAMILY },
             }]}
             series={[{
                 data: chartData.values,
@@ -545,9 +515,6 @@ interface ExplorationChartProps {
 }
 
 export function ExplorationChart({ exploration, exploitation }: ExplorationChartProps) {
-    const { resolvedTheme } = useTheme();
-    const isDark = resolvedTheme === "dark";
-
     const data = useMemo(() => [
         { id: 0, value: exploration, label: "Exploration", color: "#8b5cf6" },
         { id: 1, value: exploitation, label: "Favorites", color: "#ec4899" },
@@ -563,7 +530,7 @@ export function ExplorationChart({ exploration, exploitation }: ExplorationChart
                 cornerRadius: 8,
             }]}
             sx={{
-                "& .MuiChartsLegend-root": { fontSize: 12, fill: isDark ? "#a1a1aa" : "#71717a", fontFamily: FONT_FAMILY }
+                "& .MuiChartsLegend-root": { fontSize: 12, fill: LABEL_COLOR, fontFamily: FONT_FAMILY }
             }}
         />
     );

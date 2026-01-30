@@ -32,10 +32,10 @@ export function TokenInput({ onTokenSubmit, action, isPending = false, error }: 
 
     return (
         <div className="flex items-center justify-center p-4">
-            <Card className="w-full max-w-md border-pink-100 shadow-xl dark:border-pink-900/20">
+            <Card className="w-full max-w-md border-pink-100 shadow-xl">
                 <CardHeader className="text-center">
-                    <div className="mx-auto bg-pink-100 p-3 rounded-full w-fit mb-4 dark:bg-pink-900/30">
-                        <Key className="h-6 w-6 text-pink-600 dark:text-pink-400" />
+                    <div className="mx-auto bg-pink-100 p-3 rounded-full w-fit mb-4">
+                        <Key className="h-6 w-6 text-pink-600" />
                     </div>
                     <CardTitle className="text-2xl font-bold">Enter Bearer Token</CardTitle>
                     <CardDescription>
@@ -77,12 +77,12 @@ export function TokenInput({ onTokenSubmit, action, isPending = false, error }: 
 
                         <div className="space-y-2">
                             {error && (
-                                <div className="text-red-500 text-sm text-center bg-red-50 p-2 rounded dark:bg-red-900/10">
+                                <div className="text-red-500 text-sm text-center bg-red-50 p-2 rounded">
                                     {error}
                                 </div>
                             )}
 
-                            <Alert variant="default" className="bg-blue-50 text-blue-800 border-blue-200 dark:bg-blue-900/20 dark:text-blue-200 dark:border-blue-900/50">
+                            <Alert variant="default" className="bg-blue-50 text-blue-800 border-blue-200">
                                 <AlertCircle className="h-4 w-4" />
                                 <AlertTitle>Guest Mode Info</AlertTitle>
                                 <AlertDescription className="text-xs mt-1">

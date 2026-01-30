@@ -85,7 +85,7 @@ export function AnalyticsView({ analytics }: AnalyticsViewProps) {
                             label="Total Spent"
                             value={`৳${analytics.spending.total_spent.toLocaleString()}`}
                             icon={<DollarSign className="h-4 w-4" />}
-                            color="text-pink-600 dark:text-pink-400"
+                            color="text-pink-600"
                             help={{
                                 shows: "Total money spent on all orders.",
                                 data: "Sum of all order totals.",
@@ -193,7 +193,7 @@ export function AnalyticsView({ analytics }: AnalyticsViewProps) {
                                     {Object.entries(analytics.restaurants.top_restaurants_by_orders).map(([name, count], i) => (
                                         <div key={name} className="flex items-center justify-between px-4 py-3 md:px-6 md:py-4 hover:bg-muted/30 transition-colors group">
                                             <div className="flex items-center gap-3 md:gap-4 min-w-0">
-                                                <div className="flex h-7 w-7 md:h-8 md:w-8 shrink-0 items-center justify-center rounded-full bg-orange-100 dark:bg-orange-900/30 text-orange-600 font-bold text-xs md:text-sm group-hover:scale-110 transition-transform">
+                                                <div className="flex h-7 w-7 md:h-8 md:w-8 shrink-0 items-center justify-center rounded-full bg-orange-100 text-orange-600 font-bold text-xs md:text-sm group-hover:scale-110 transition-transform">
                                                     {i + 1}
                                                 </div>
                                                 <span className="font-medium text-sm md:text-base truncate">{name}</span>
@@ -277,13 +277,13 @@ export function AnalyticsView({ analytics }: AnalyticsViewProps) {
 
                         <div className="flex flex-col gap-4 md:gap-6">
                             <div className="grid grid-cols-2 gap-3 md:gap-4 flex-1">
-                                <Card className="text-center p-4 md:p-6 flex flex-col justify-center items-center md:hover:scale-105 transition-transform duration-300 bg-pink-50/50 dark:bg-pink-900/10 border-pink-200 dark:border-pink-800/30">
+                                <Card className="text-center p-4 md:p-6 flex flex-col justify-center items-center md:hover:scale-105 transition-transform duration-300 bg-pink-50/50 border-pink-200">
                                     <div className="text-2xl md:text-4xl font-bold text-pink-600 mb-1">
                                         {analytics.patterns.weekend_vs_weekday.weekend_percentage.toFixed(0)}%
                                     </div>
                                     <div className="text-xs md:text-sm font-medium text-muted-foreground uppercase tracking-wider">Weekend</div>
                                 </Card>
-                                <Card className="text-center p-4 md:p-6 flex flex-col justify-center items-center md:hover:scale-105 transition-transform duration-300 bg-blue-50/50 dark:bg-blue-900/10 border-blue-200 dark:border-blue-800/30">
+                                <Card className="text-center p-4 md:p-6 flex flex-col justify-center items-center md:hover:scale-105 transition-transform duration-300 bg-blue-50/50 border-blue-200">
                                     <div className="text-2xl md:text-4xl font-bold text-blue-600 mb-1">
                                         {(100 - analytics.patterns.weekend_vs_weekday.weekend_percentage).toFixed(0)}%
                                     </div>
@@ -331,7 +331,7 @@ export function AnalyticsView({ analytics }: AnalyticsViewProps) {
                                 <span className="text-sm font-medium text-muted-foreground">CLV (Annual)</span>
                                 <MetricHelp shows="Estimated yearly value." data="Avg spend projected." insight="Your value to the platform." useful="Fun economic metric." />
                             </div>
-                            <div className="text-3xl lg:text-4xl font-bold text-pink-600 dark:text-pink-400 tracking-tight">
+                            <div className="text-3xl lg:text-4xl font-bold text-pink-600 tracking-tight">
                                 ৳{(analytics.advanced?.customer_lifetime_value ?? 0).toLocaleString(undefined, { maximumFractionDigits: 0 })}
                             </div>
                         </Card>
@@ -344,10 +344,10 @@ export function AnalyticsView({ analytics }: AnalyticsViewProps) {
                             </div>
                             <div>
                                 <div className="flex items-baseline gap-1 mb-3">
-                                    <span className="text-3xl lg:text-4xl font-bold text-purple-600 dark:text-purple-400">{(analytics.advanced?.brand_loyalty_score ?? 0).toFixed(0)}</span>
+                                    <span className="text-3xl lg:text-4xl font-bold text-purple-600">{(analytics.advanced?.brand_loyalty_score ?? 0).toFixed(0)}</span>
                                     <span className="text-sm text-muted-foreground font-medium">/100</span>
                                 </div>
-                                <div className="h-2 w-full bg-purple-100 dark:bg-purple-900/30 rounded-full overflow-hidden">
+                                <div className="h-2 w-full bg-purple-100 rounded-full overflow-hidden">
                                     <div className="h-full bg-purple-500 rounded-full" style={{ width: `${analytics.advanced?.brand_loyalty_score ?? 0}%` }} />
                                 </div>
                             </div>
@@ -361,10 +361,10 @@ export function AnalyticsView({ analytics }: AnalyticsViewProps) {
                             </div>
                             <div>
                                 <div className="flex items-baseline gap-1 mb-3">
-                                    <span className="text-3xl lg:text-4xl font-bold text-blue-600 dark:text-blue-400">{(analytics.diversity?.variety_score ?? 0).toFixed(0)}</span>
+                                    <span className="text-3xl lg:text-4xl font-bold text-blue-600">{(analytics.diversity?.variety_score ?? 0).toFixed(0)}</span>
                                     <span className="text-sm text-muted-foreground font-medium">/100</span>
                                 </div>
-                                <div className="h-2 w-full bg-blue-100 dark:bg-blue-900/30 rounded-full overflow-hidden">
+                                <div className="h-2 w-full bg-blue-100 rounded-full overflow-hidden">
                                     <div className="h-full bg-blue-500 rounded-full" style={{ width: `${analytics.diversity?.variety_score ?? 0}%` }} />
                                 </div>
                             </div>
@@ -378,10 +378,10 @@ export function AnalyticsView({ analytics }: AnalyticsViewProps) {
                             </div>
                             <div>
                                 <div className="flex items-baseline gap-1 mb-3">
-                                    <span className="text-3xl lg:text-4xl font-bold text-orange-600 dark:text-orange-400">{(analytics.advanced?.spontaneity_index ?? 0).toFixed(0)}</span>
+                                    <span className="text-3xl lg:text-4xl font-bold text-orange-600">{(analytics.advanced?.spontaneity_index ?? 0).toFixed(0)}</span>
                                     <span className="text-sm text-muted-foreground font-medium">/100</span>
                                 </div>
-                                <div className="h-2 w-full bg-orange-100 dark:bg-orange-900/30 rounded-full overflow-hidden">
+                                <div className="h-2 w-full bg-orange-100 rounded-full overflow-hidden">
                                     <div className="h-full bg-orange-500 rounded-full" style={{ width: `${analytics.advanced?.spontaneity_index ?? 0}%` }} />
                                 </div>
                             </div>
@@ -468,8 +468,8 @@ export function AnalyticsView({ analytics }: AnalyticsViewProps) {
                     {/* Cost Optimization Section */}
                     <div className="space-y-4">
                         <div className="flex items-center gap-2 mb-2">
-                            <div className="p-2 bg-green-100 dark:bg-green-900/30 rounded-lg">
-                                <DollarSign className="h-5 w-5 text-green-600 dark:text-green-400" />
+                            <div className="p-2 bg-green-100 rounded-lg">
+                                <DollarSign className="h-5 w-5 text-green-600" />
                             </div>
                             <h3 className="text-lg font-bold text-foreground">Cost Optimization Insights</h3>
                             <MetricHelp
@@ -508,14 +508,14 @@ export function AnalyticsView({ analytics }: AnalyticsViewProps) {
                         </div>
 
                         {/* Money Saving Tip */}
-                        <div className="relative overflow-hidden rounded-xl border border-yellow-200 bg-yellow-50/50 p-4 dark:border-yellow-900/50 dark:bg-yellow-950/20">
+                        <div className="relative overflow-hidden rounded-xl border border-yellow-200 bg-yellow-50/50 p-4">
                             <div className="flex items-start gap-4">
-                                <div className="p-2 bg-yellow-100 dark:bg-yellow-900/40 rounded-full shrink-0">
-                                    <Lightbulb className="h-5 w-5 text-yellow-600 dark:text-yellow-400" />
+                                <div className="p-2 bg-yellow-100 rounded-full shrink-0">
+                                    <Lightbulb className="h-5 w-5 text-yellow-600" />
                                 </div>
                                 <div>
-                                    <h4 className="text-sm font-bold text-yellow-800 dark:text-yellow-500 mb-1">💡 Smart Saving Tip</h4>
-                                    <p className="text-sm text-yellow-700 dark:text-yellow-400/90 leading-relaxed">
+                                    <h4 className="text-sm font-bold text-yellow-800 mb-1">💡 Smart Saving Tip</h4>
+                                    <p className="text-sm text-yellow-700 leading-relaxed">
                                         Try to keep your orders above <span className="font-bold">৳{(analytics.costOptimization?.optimal_order_value ?? 250).toFixed(0)}</span> to maximize value and minimize the impact of delivery and service fees!
                                     </p>
                                 </div>
@@ -527,8 +527,8 @@ export function AnalyticsView({ analytics }: AnalyticsViewProps) {
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4 lg:gap-6">
                         {/* Spending by Day */}
                         <Card className="hover:shadow-lg transition-all border-none shadow-sm md:shadow">
-                            <CardHeader className="bg-white dark:bg-zinc-900 border-b-0 pb-2">
-                                <CardTitle className="text-base font-bold flex items-center gap-2 text-zinc-900 dark:text-zinc-100">
+                            <CardHeader className="bg-white border-b-0 pb-2">
+                                <CardTitle className="text-base font-bold flex items-center gap-2 text-zinc-900">
                                     <BarChartIcon className="h-5 w-5 text-blue-500" /> Spending by Day
                                     <MetricHelp
                                         shows="Daily spending patterns."
@@ -546,8 +546,8 @@ export function AnalyticsView({ analytics }: AnalyticsViewProps) {
 
                         {/* Price Trend */}
                         <Card className="hover:shadow-lg transition-all border-none shadow-sm md:shadow">
-                            <CardHeader className="bg-white dark:bg-zinc-900 border-b-0 pb-2">
-                                <CardTitle className="text-base font-bold flex items-center gap-2 text-zinc-900 dark:text-zinc-100">
+                            <CardHeader className="bg-white border-b-0 pb-2">
+                                <CardTitle className="text-base font-bold flex items-center gap-2 text-zinc-900">
                                     <TrendingDown className="h-5 w-5 text-orange-500" /> Price Trend
                                     <MetricHelp
                                         shows="Item price changes."
@@ -570,23 +570,23 @@ export function AnalyticsView({ analytics }: AnalyticsViewProps) {
                         <Card className="p-6 border-none shadow-sm md:shadow hover:shadow-lg transition-all">
                             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                                 {/* Profile Stats */}
-                                <div className="p-5 bg-blue-50 dark:bg-blue-900/10 rounded-xl space-y-3">
+                                <div className="p-5 bg-blue-50 rounded-xl space-y-3">
                                     <div className="flex items-center gap-2 mb-2">
-                                        <div className="p-1.5 bg-blue-100 dark:bg-blue-900/30 rounded-md">
-                                            <BarChartIcon className="h-4 w-4 text-blue-600 dark:text-blue-400" />
+                                        <div className="p-1.5 bg-blue-100 rounded-md">
+                                            <BarChartIcon className="h-4 w-4 text-blue-600" />
                                         </div>
-                                        <span className="font-bold text-blue-700 dark:text-blue-300">Your Profile</span>
+                                        <span className="font-bold text-blue-700">Your Profile</span>
                                     </div>
                                     <ul className="space-y-2.5">
-                                        <li className="flex items-center gap-2 text-sm text-blue-800 dark:text-blue-200 font-medium">
+                                        <li className="flex items-center gap-2 text-sm text-blue-800 font-medium">
                                             <span className="w-1.5 h-1.5 rounded-full bg-blue-500"></span>
                                             {analytics.comparative?.order_frequency_category ?? 'N/A'} User
                                         </li>
-                                        <li className="flex items-center gap-2 text-sm text-blue-800 dark:text-blue-200 font-medium">
+                                        <li className="flex items-center gap-2 text-sm text-blue-800 font-medium">
                                             <span className="w-1.5 h-1.5 rounded-full bg-blue-500"></span>
                                             {analytics.comparative?.spending_percentile ?? 50}th percentile spending
                                         </li>
-                                        <li className="flex items-center gap-2 text-sm text-blue-800 dark:text-blue-200 font-medium">
+                                        <li className="flex items-center gap-2 text-sm text-blue-800 font-medium">
                                             <span className="w-1.5 h-1.5 rounded-full bg-blue-500"></span>
                                             Value Score: {(analytics.comparative?.value_consciousness_score ?? 0).toFixed(0)}/100
                                         </li>
@@ -594,23 +594,23 @@ export function AnalyticsView({ analytics }: AnalyticsViewProps) {
                                 </div>
 
                                 {/* Health Stats */}
-                                <div className="p-5 bg-green-50 dark:bg-green-900/10 rounded-xl space-y-3">
+                                <div className="p-5 bg-green-50 rounded-xl space-y-3">
                                     <div className="flex items-center gap-2 mb-2">
-                                        <div className="p-1.5 bg-green-100 dark:bg-green-900/30 rounded-md">
-                                            <Utensils className="h-4 w-4 text-green-600 dark:text-green-400" />
+                                        <div className="p-1.5 bg-green-100 rounded-md">
+                                            <Utensils className="h-4 w-4 text-green-600" />
                                         </div>
-                                        <span className="font-bold text-green-700 dark:text-green-300">Health Stats</span>
+                                        <span className="font-bold text-green-700">Health Stats</span>
                                     </div>
                                     <ul className="space-y-2.5">
-                                        <li className="flex items-center gap-2 text-sm text-green-800 dark:text-green-200 font-medium">
+                                        <li className="flex items-center gap-2 text-sm text-green-800 font-medium">
                                             <span className="w-1.5 h-1.5 rounded-full bg-green-500"></span>
                                             Healthy: {(analytics.healthDietary?.healthy_food_percentage ?? 0).toFixed(0)}%
                                         </li>
-                                        <li className="flex items-center gap-2 text-sm text-green-800 dark:text-green-200 font-medium">
+                                        <li className="flex items-center gap-2 text-sm text-green-800 font-medium">
                                             <span className="w-1.5 h-1.5 rounded-full bg-green-500"></span>
                                             Indulgent: {(analytics.healthDietary?.indulgent_food_percentage ?? 0).toFixed(0)}%
                                         </li>
-                                        <li className="flex items-center gap-2 text-sm text-green-800 dark:text-green-200 font-medium">
+                                        <li className="flex items-center gap-2 text-sm text-green-800 font-medium">
                                             <span className="w-1.5 h-1.5 rounded-full bg-green-500"></span>
                                             Avg Basket: {(analytics.behavior?.average_basket_size ?? 0).toFixed(1)} items
                                         </li>
@@ -618,23 +618,23 @@ export function AnalyticsView({ analytics }: AnalyticsViewProps) {
                                 </div>
 
                                 {/* Time Patterns */}
-                                <div className="p-5 bg-purple-50 dark:bg-purple-900/10 rounded-xl space-y-3">
+                                <div className="p-5 bg-purple-50 rounded-xl space-y-3">
                                     <div className="flex items-center gap-2 mb-2">
-                                        <div className="p-1.5 bg-purple-100 dark:bg-purple-900/30 rounded-md">
-                                            <Clock className="h-4 w-4 text-purple-600 dark:text-purple-400" />
+                                        <div className="p-1.5 bg-purple-100 rounded-md">
+                                            <Clock className="h-4 w-4 text-purple-600" />
                                         </div>
-                                        <span className="font-bold text-purple-700 dark:text-purple-300">Time Patterns</span>
+                                        <span className="font-bold text-purple-700">Time Patterns</span>
                                     </div>
                                     <ul className="space-y-2.5">
-                                        <li className="flex items-center gap-2 text-sm text-purple-800 dark:text-purple-200 font-medium">
+                                        <li className="flex items-center gap-2 text-sm text-purple-800 font-medium">
                                             <span className="w-1.5 h-1.5 rounded-full bg-purple-500"></span>
                                             Avg gap: {(analytics.timeAnalysis?.average_days_between_orders ?? 0).toFixed(1)} days
                                         </li>
-                                        <li className="flex items-center gap-2 text-sm text-purple-800 dark:text-purple-200 font-medium">
+                                        <li className="flex items-center gap-2 text-sm text-purple-800 font-medium">
                                             <span className="w-1.5 h-1.5 rounded-full bg-purple-500"></span>
                                             Discovery rate: {(analytics.diversity?.restaurant_discovery_rate ?? 0).toFixed(1)} new/month
                                         </li>
-                                        <li className="flex items-center gap-2 text-sm text-purple-800 dark:text-purple-200 font-medium">
+                                        <li className="flex items-center gap-2 text-sm text-purple-800 font-medium">
                                             <span className="w-1.5 h-1.5 rounded-full bg-purple-500"></span>
                                             {(analytics.timeAnalysis?.ordering_acceleration ?? 0) > 0 ? 'Ordering more often' : (analytics.timeAnalysis?.ordering_acceleration ?? 0) < 0 ? 'Ordering less often' : 'Stable frequency'}
                                         </li>
@@ -691,8 +691,8 @@ function TabButton({ value, children, className = "", icon }: { value: string; c
             value={value}
             className={`
                 data-[state=active]:bg-pink-500 data-[state=active]:text-white data-[state=active]:shadow-[0_0_20px_-4px_rgba(236,72,153,0.6)] data-[state=active]:ring-1 data-[state=active]:ring-pink-400/50
-                data-[state=inactive]:bg-white data-[state=inactive]:text-zinc-600 data-[state=inactive]:hover:bg-zinc-50 data-[state=inactive]:border-zinc-100 data-[state=inactive]:dark:bg-zinc-900 data-[state=inactive]:dark:text-zinc-400 data-[state=inactive]:dark:hover:bg-zinc-800 data-[state=inactive]:dark:border-zinc-800 data-[state=inactive]:shadow-sm
-                bg-white text-zinc-600 border border-zinc-100/50 dark:bg-zinc-900 dark:text-zinc-400 dark:border-zinc-800
+                data-[state=inactive]:bg-white data-[state=inactive]:text-zinc-600 data-[state=inactive]:hover:bg-zinc-50 data-[state=inactive]:border-zinc-100 data-[state=inactive]:shadow-sm
+                bg-white text-zinc-600 border border-zinc-100/50
                 rounded-full py-2.5 px-4 md:px-6 md:py-3 text-sm font-semibold tracking-tight
                 transition-all duration-300 ease-out
                 flex items-center justify-center gap-2.5
@@ -761,7 +761,7 @@ function InsightCard({ insight, analytics }: InsightCardProps) {
                     iconBg: 'bg-emerald-100',
                     iconColor: 'text-emerald-600',
                     tagLabel: 'Spending',
-                    tagClass: 'bg-emerald-100 text-emerald-700 dark:bg-emerald-500/20 dark:text-emerald-300 border-emerald-200 dark:border-emerald-800',
+                    tagClass: 'bg-emerald-100 text-emerald-700 border-emerald-200',
                     visualization: 'progress',
                     progress: Math.min(avgOrder / 500, 1) // Normalized to 500 BDT max
                 };
@@ -775,7 +775,7 @@ function InsightCard({ insight, analytics }: InsightCardProps) {
                     iconBg: 'bg-purple-100',
                     iconColor: 'text-purple-600',
                     tagLabel: 'Savings',
-                    tagClass: 'bg-purple-100 text-purple-700 dark:bg-purple-500/20 dark:text-purple-300 border-purple-200 dark:border-purple-800',
+                    tagClass: 'bg-purple-100 text-purple-700 border-purple-200',
                     visualization: 'circle',
                     progress: savingsRate / 100
                 };
@@ -791,7 +791,7 @@ function InsightCard({ insight, analytics }: InsightCardProps) {
                     iconBg: 'bg-blue-100',
                     iconColor: 'text-blue-600',
                     tagLabel: 'Schedule',
-                    tagClass: 'bg-blue-100 text-blue-700 dark:bg-blue-500/20 dark:text-blue-300 border-blue-200 dark:border-blue-800',
+                    tagClass: 'bg-blue-100 text-blue-700 border-blue-200',
                     visualization: 'chart',
                     progress: 0
                 };
@@ -805,7 +805,7 @@ function InsightCard({ insight, analytics }: InsightCardProps) {
                     iconBg: 'bg-orange-100',
                     iconColor: 'text-orange-600',
                     tagLabel: 'Loyalty',
-                    tagClass: 'bg-orange-100 text-orange-700 dark:bg-orange-500/20 dark:text-orange-300 border-orange-200 dark:border-orange-800',
+                    tagClass: 'bg-orange-100 text-orange-700 border-orange-200',
                     visualization: 'pie',
                     progress: loyaltyPct / 100
                 };
@@ -845,8 +845,8 @@ function InsightCard({ insight, analytics }: InsightCardProps) {
             whileHover="hover"
             whileTap={{ scale: 0.98 }}
             className="
-                bg-white dark:bg-zinc-900 
-                border border-zinc-200 dark:border-zinc-800
+                bg-white 
+                border border-zinc-200
                 rounded-xl p-4
                 shrink-0 min-w-[280px] w-[85vw] max-w-[320px] md:w-full
                 min-h-[120px]
@@ -875,14 +875,14 @@ function InsightCard({ insight, analytics }: InsightCardProps) {
                 {/* Center: Content */}
                 <div className="flex-1 min-w-0 flex flex-col justify-center py-2">
                     <div className="flex items-center gap-1.5 mb-1">
-                        <h4 className="font-semibold text-zinc-900 dark:text-zinc-100 text-sm leading-tight">
+                        <h4 className="font-semibold text-zinc-900 text-sm leading-tight">
                             {insight.title}
                         </h4>
                         {/* Help Icon with Tooltip */}
                         <HoverCard openDelay={0} closeDelay={0}>
                             <HoverCardTrigger asChild>
                                 <div className="cursor-help inline-flex items-center justify-center">
-                                    <HelpCircle className="w-3.5 h-3.5 text-zinc-400 hover:text-zinc-600 dark:hover:text-zinc-300 transition-colors" />
+                                    <HelpCircle className="w-3.5 h-3.5 text-zinc-400 hover:text-zinc-600 transition-colors" />
                                 </div>
                             </HoverCardTrigger>
                             <HoverCardContent className="w-64 z-50 p-3 text-xs" side="bottom" align="start">
@@ -893,11 +893,11 @@ function InsightCard({ insight, analytics }: InsightCardProps) {
                             </HoverCardContent>
                         </HoverCard>
                     </div>
-                    <p className="text-xs text-zinc-600 dark:text-zinc-400 mb-1.5">
+                    <p className="text-xs text-zinc-600 mb-1.5">
                         <span className="font-medium">{data.metric}</span>
-                        {data.level && <span className="text-zinc-400 dark:text-zinc-500 ml-1">{data.level}</span>}
+                        {data.level && <span className="text-zinc-400 ml-1">{data.level}</span>}
                     </p>
-                    <p className="text-[11px] text-zinc-500 dark:text-zinc-500 leading-snug">
+                    <p className="text-[11px] text-zinc-500 leading-snug">
                         {insight.description}
                     </p>
                 </div>
@@ -907,7 +907,7 @@ function InsightCard({ insight, analytics }: InsightCardProps) {
                     {/* Mini Visualization */}
                     <div className="w-12 h-8 flex items-center justify-center">
                         {data.visualization === 'progress' && (
-                            <div className="w-full h-1.5 bg-zinc-200 dark:bg-zinc-700 rounded-full overflow-hidden">
+                            <div className="w-full h-1.5 bg-zinc-200 rounded-full overflow-hidden">
                                 <motion.div
                                     className="h-full bg-emerald-500 rounded-full"
                                     initial={{ width: 0 }}
