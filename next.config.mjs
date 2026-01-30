@@ -1,48 +1,16 @@
-import type { NextConfig } from "next";
+/** @type {import('next').NextConfig} */
+const nextConfig = {
 
-/**
- * Next.js Configuration
- * 
- * This configuration file handles:
- * - Component caching for performance
- * - Image optimization for external sources
- * - Security headers (CSP, HSTS, XSS protection, etc.)
- * - Experimental features (view transitions)
- * 
- * @see https://nextjs.org/docs/app/api-reference/next-config-js
- */
-const nextConfig: NextConfig = {
-  // ==========================================================================
-  // PERFORMANCE OPTIMIZATIONS
-  // ==========================================================================
-
-  /**
-   * Enable React component caching for improved performance
-   * Reduces re-renders by memoizing component output
-   */
-  cacheComponents: true,
-
-  /**
-   * Remove X-Powered-By header for security (hides tech stack)
-   */
   poweredByHeader: false,
 
-  /**
-   * Enable React strict mode for development
-   * Helps identify potential problems in the application
-   */
   reactStrictMode: true,
-
-  // ==========================================================================
-  // EXPERIMENTAL FEATURES
-  // ==========================================================================
 
   experimental: {
     /**
      * Enable View Transition API for smooth page transitions
      * @see https://developer.mozilla.org/en-US/docs/Web/API/View_Transitions_API
      */
-    viewTransition: true,
+    // viewTransition: true, // Commented out to ensure stability with Tailwind 4 on Vercel
   },
 
   // ==========================================================================
