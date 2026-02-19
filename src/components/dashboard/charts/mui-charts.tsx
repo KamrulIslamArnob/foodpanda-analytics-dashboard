@@ -63,9 +63,13 @@ interface MonthlySpendingChartProps {
 
 export function MonthlySpendingChart({ monthlyData }: MonthlySpendingChartProps) {
     const chartData = useMemo(() => {
-        const entries = Object.entries(monthlyData);
+        const entries = Object.entries(monthlyData).sort(([a], [b]) => a.localeCompare(b));
+        const monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
         return {
-            months: entries.map(([date]) => date.slice(5)), // "2024-01" -> "01"
+            months: entries.map(([date]) => {
+                const [year, month] = date.split('-');
+                return `${monthNames[parseInt(month, 10) - 1]}'${year.slice(2)}`;
+            }),
             values: entries.map(([, value]) => value),
         };
     }, [monthlyData]);
@@ -279,9 +283,13 @@ interface SpendingTrendChartProps {
 
 export function SpendingTrendChart({ monthlyData }: SpendingTrendChartProps) {
     const chartData = useMemo(() => {
-        const entries = Object.entries(monthlyData);
+        const entries = Object.entries(monthlyData).sort(([a], [b]) => a.localeCompare(b));
+        const monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
         return {
-            months: entries.map(([date]) => date.slice(5)),
+            months: entries.map(([date]) => {
+                const [year, month] = date.split('-');
+                return `${monthNames[parseInt(month, 10) - 1]}'${year.slice(2)}`;
+            }),
             values: entries.map(([, value]) => value),
         };
     }, [monthlyData]);
@@ -418,9 +426,13 @@ interface PriceTrendChartProps {
 
 export function PriceTrendChart({ trendData }: PriceTrendChartProps) {
     const chartData = useMemo(() => {
-        const entries = Object.entries(trendData);
+        const entries = Object.entries(trendData).sort(([a], [b]) => a.localeCompare(b));
+        const monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
         return {
-            months: entries.map(([date]) => date.slice(5)),
+            months: entries.map(([date]) => {
+                const [year, month] = date.split('-');
+                return `${monthNames[parseInt(month, 10) - 1]}'${year.slice(2)}`;
+            }),
             values: entries.map(([, value]) => value),
         };
     }, [trendData]);
@@ -485,9 +497,13 @@ interface OrderFrequencyTrendChartProps {
 
 export function OrderFrequencyTrendChart({ frequencyData }: OrderFrequencyTrendChartProps) {
     const chartData = useMemo(() => {
-        const entries = Object.entries(frequencyData);
+        const entries = Object.entries(frequencyData).sort(([a], [b]) => a.localeCompare(b));
+        const monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
         return {
-            months: entries.map(([date]) => date.slice(5)),
+            months: entries.map(([date]) => {
+                const [year, month] = date.split('-');
+                return `${monthNames[parseInt(month, 10) - 1]}'${year.slice(2)}`;
+            }),
             values: entries.map(([, value]) => value),
         };
     }, [frequencyData]);
